@@ -10,7 +10,7 @@ class Window
     GLFWwindow *window;
 
 public:
-    Window(std::string name, int width, int height)
+    Window(std::string name, int &width, int &height)
     {
         if (!glfwInit())
         {
@@ -24,9 +24,11 @@ public:
 
         auto mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-        window = glfwCreateWindow(
-            width > 0 ? width : mode->width,
-            height > 0 ? height : mode->height, "Painter", NULL, NULL);
+        width = width > 0 ? width : mode->width;
+        height = height > 0 ? height : mode->height;
+
+        window = glfwCreateWindow(width, height, "Painter", NULL, NULL);
+
         if (!window)
         {
             return;

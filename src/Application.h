@@ -22,7 +22,7 @@ public:
 
         renderer = new Renderer();
 
-        if (!renderer->Init())
+        if (!renderer->Init(width, height))
         {
             return -1;
         }
@@ -37,7 +37,8 @@ public:
     {
         window->PollEvents();
 
-        renderer->Clear(0.0f, 0.0f, 0.0f, 1.0f);
+        renderer->Clear(0.5f, 0.0f, 0.0f, 1.0f);
+        renderer->Update();
 
         window->Update();
     }
